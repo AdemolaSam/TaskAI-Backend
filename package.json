@@ -1,0 +1,24 @@
+{
+  "name": "taskai",
+  "version": "1.0.0",
+  "description": "A product management web app that uses Ai to help breakdown tasks.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdemolaSam/TaskAI-Backend.git"
+  },
+  "keywords": [
+    "Project-Management",
+    "AI",
+    "API"
+  ],
+  "author": "Ademola Oduntan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdemolaSam/TaskAI-Backend/issues"
+  },
+  "homepage": "https://github.com/AdemolaSam/TaskAI-Backend#readme"
+}
