@@ -1,10 +1,13 @@
 {
   "name": "taskai",
   "version": "1.0.0",
+  "type": "module",
   "description": "A product management web app that uses Ai to help breakdown tasks.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -29,6 +32,8 @@
     "express": "^4.19.2",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
+    "sequelize": "^6.37.3",
+    "sequelize-cli": "^6.6.2",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
   }
