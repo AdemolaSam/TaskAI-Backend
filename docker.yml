@@ -4,10 +4,10 @@ services:
   mysqldb:
     image: mysql:8
     environment:
-      MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: my_database
-      MYSQL_USER: my_user
-      MYSQL_PASSWORD: my_password
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
       - db_data:/var/lib/mysql
     networks:
@@ -16,12 +16,15 @@ services:
   app:
     build: .
     ports:
-      - "3000:3000"
+      - "${PORT}:${PORT}"
     environment:
-      DB_HOST: db
-      DB_USER: my_user
-      DB_PASSWORD: my_password
-      DB_NAME: my_database
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_DIALECT: ${DB_DIALECT}
+      NODE_ENV: ${NODE_ENV}
+      PORT: ${PORT}
     depends_on:
       - db
     networks:

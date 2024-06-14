@@ -4,6 +4,7 @@ import dotenv from "dotenv"
 import cookieParser from "cookie-parser"
 import morgan from "morgan"
 import routeManager from "./src/routes/index.js"
+import sequelize from "./src/config/db.js"
 dotenv.config()
 const port = process.env.PORT || 8030
 const app = express()
