@@ -8,6 +8,9 @@ export const getUserByEmail = (email) => {
             email: email
         }
     })
+    if(!user){
+        throw new AppError("User Not found")
+    }
     return user
 }
 

@@ -45,3 +45,20 @@ export const updateUser = async(req, res) => {
         })
     }
 }
+
+export const getUserByEmail = async(req, res) => {
+    try {
+        const user = await getUserByEmail(req.body.email)
+        return res.status(httpStatus.OK).json(user)
+    } catch (error) {
+        if(error instanceof AppError) {
+            return res.status(httpStatus.NOT_FOUND).json({
+                message: error.message
+            })
+        }
+        return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
+            message: error.message,
+            error: "Internal Server Error"
+        })
+    }
+}
