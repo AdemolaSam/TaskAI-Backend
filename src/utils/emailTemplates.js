@@ -17,7 +17,6 @@ export const otpMailTemp = (otp)=> {
         <b>${otp}</b>
     </center>
 `
-   
 }
 
 
