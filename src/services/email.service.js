@@ -28,7 +28,7 @@ const mailSend = async (sender, receiver, subject, html, text) => {
 
 mailSend().catch(err => console.log(err.message))
 
-export const welcomeMail = async(sender, receiver, subject, html) => {
+export const sendWelcomeMail = async(sender, receiver, subject, html) => {
     await mailSend(sender, receiver, subject, html=welcomeMailTemp)
 }
 
@@ -37,7 +37,7 @@ export const sendOtp = async(sender, receiver, subject, html) => {
     await mailSend(sender, receiver, subject, html=otpMailTemp)
 }
 
-export const projectCreationEmail = async(sender, receiver, subject, html) => {
+export const sendProjectCreationEmail = async(sender, receiver, subject, html) => {
     await mailSend(sender, receiver, subject, html=projectCreationEmailTemp)
 }
 

@@ -1,9 +1,9 @@
 import User from "../models/user.model";
 import bcrypt from "bcrypt"
-import cookieParser from "cookie-parser";
 import { getUserByEmail } from "./user.service";
 import { AppError } from "../middlewares/error";
 import generateToken from "../utils/token";
+import { sendWelcomeMail, } from "./email.service";
 
 export const register = async (createBody) => {
     const userExists = await getUserByEmail(createBody.email)
@@ -14,6 +14,7 @@ export const register = async (createBody) => {
     const { password, ...rest } = createBody
     const userData = { rest, password: hash }
     const newUser = await User.create(userData)
+    await sendWelcomeMail()
     return newUser
 }
 
@@ -34,3 +35,4 @@ export const login = async (email, password)=> {
      user: rest
    }
 }
+
