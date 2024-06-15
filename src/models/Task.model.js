@@ -12,7 +12,8 @@ const Task = sequelize.define('Task', {
         type: DataTypes.UUID,
         references: {
             model: 'Projects',
-            key: 'id'
+            key: 'id',
+            onDelete: 'SET NULL'
         }
     },
 

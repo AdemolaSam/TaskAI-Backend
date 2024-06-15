@@ -42,8 +42,10 @@ const Project = sequelize.define('Project', {
         type: DataTypes.INTEGER,
         references: {
             model: 'Users',
-            key: 'id'
-        }
+            key: 'id',
+            onDelete: 'CASCADE'
+        },
+        allowNull: false
     },
 
     numberOfTasks: {

@@ -5,7 +5,8 @@ const User = sequelize.define('User', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        allowNull: false
+        allowNull: false,
+        autoIncrement: true
     },
 
     firstName: {
@@ -28,6 +29,11 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING,
         allowNull: false
     }
-})
+}, 
+    {
+        timestamps: true,
+    }
+
+)
 
 export default User
