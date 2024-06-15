@@ -36,3 +36,6 @@ export const login = async (email, password)=> {
    }
 }
 
+export const VerifyUser = async(req, res) => {
+    
+}
