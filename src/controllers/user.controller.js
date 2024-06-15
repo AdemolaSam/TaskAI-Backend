@@ -23,3 +23,25 @@ export const getUserById = async(req, res) => {
         })
     }
 }
+
+export const updateUser = async(req, res) => {
+    try {
+        const updatedUser = await updateUser(
+            req.params.userId,
+            req.body
+        )
+        return res.status(httpStatus.OK).json({
+            updateUser
+        })
+    } catch (error) {
+        if(error instanceof AppError){
+            return res.status(httpStatus.FAILED_DEPENDENCY).json({
+                message: error.message
+            })
+        }
+        return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
+            message: error.message,
+            error: "Internal Server Error"
+        })
+    }
+}
