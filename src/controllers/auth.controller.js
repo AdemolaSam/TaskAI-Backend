@@ -1,6 +1,4 @@
 import httpStatus from "http-status"
-import cookieParser from "cookie-parser";
-
 import {
     register,
     login
