@@ -37,8 +37,8 @@ export const updateUser = async (userId, updateBody) => {
 }
  
 export const countAllUsers = async () => {
-    const userCounts = await User.findAndCountAll()
+    const usersCount = await User.findAndCountAll()
     return {
-        "User count": userCounts
+        "User count": usersCount
     }
 }

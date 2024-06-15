@@ -62,3 +62,15 @@ export const getUserByEmail = async(req, res) => {
         })
     }
 }
+
+export const countAllUsers = async(req, res) => {
+    try {
+        const usersCount = await countAllUsers()
+        return res.status(httpStatus.OK).json(usersCount)
+    } catch (error) {
+        return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
+            message: error.message,
+            error: "Internal Server Error"
+        })
+    }
+}
