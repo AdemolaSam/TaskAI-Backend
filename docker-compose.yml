@@ -26,7 +26,7 @@ services:
       NODE_ENV: ${NODE_ENV}
       PORT: ${PORT}
     depends_on:
-      - db
+      - mysqldb
     networks:
       - app-network
 
