@@ -9,7 +9,7 @@ const decodeToken = (req, res, next) => {
       if (!token) {
         console.log("Token Missing!")
         return res.status(httpStatus.UNAUTHORIZED).json({
-            message: "Please sign up/ sign in to continue"
+            message: "Please sign up / sign in to continue"
         })
       }
 
