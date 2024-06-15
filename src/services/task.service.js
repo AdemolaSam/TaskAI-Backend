@@ -5,7 +5,6 @@ export const createTask = async(taskObj) => {
     return newTask
 }
 
-
 export const getTaskById = async(taskId) => {
     const task = await Task.findByPk(taskId)
     return task

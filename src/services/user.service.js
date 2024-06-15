@@ -14,6 +14,9 @@ export const getUserByEmail = (email) => {
 
 export const getUserById = async (userId) => {
     const user = User.findByPk(userId)
+    if(!user){
+        throw new AppError("User Not Found")
+    }
     return user
 }
 
