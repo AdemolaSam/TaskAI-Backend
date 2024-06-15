@@ -1,4 +1,6 @@
 import httpStatus from "http-status"
+import cookieParser from "cookie-parser";
+
 import {
     register,
     login
@@ -24,5 +26,18 @@ export const register = async (req, res) => {
 }
 
 export const login = async (req, res) => {
-
+    try {
+        const email = req.body.email
+        const password = req.body.password
+        const userData = await login(email, password)
+        res.cookie('accessToken',
+            userData.token,
+            {
+                httpOnly: false,
+                maxAge: 24 * 60 * 60 * 1000 //24 hours
+            }
+        )
+    } catch (error) {
+        
+    }
 }
