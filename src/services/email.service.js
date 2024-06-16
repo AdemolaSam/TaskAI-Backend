@@ -5,14 +5,14 @@ import {
     welcomeMailTemp
 } from "../utils/emailTemplates.js"
 
-const appEmail = 'taskme.ai.org@gmail.com'
+const appEmail = 'katashisasaki318@gmail.com'
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: '587',
     auth: {
-        user: 'taskme.ai.org@gmail.com',
-        pass: 'TaskAI@Me'
+        user: 'katashisasaki318@gmail.com',
+        pass: 'vxlbhitekasvqunz'
     },
     logger: true
 })
@@ -32,16 +32,16 @@ const mailSend = async (sender, receiver, subject, html, text) => {
 mailSend().catch(err => console.log(err.message))
 
 export const sendWelcomeMail = async(address) => {
-   return await mailSend(sender=appEmail, receiver=address, subject='Welcome To TaskAI', html=welcomeMailTemp)
+   return await mailSend(appEmail, address, 'Welcome To TaskAI', welcomeMailTemp)
 }
 
 
 export const sendOtp = async(address) => {
-    return await mailSend(sender=appEmail, receiver=address, subject='Account Verification', html=otpMailTemp)
+    return await mailSend(appEmail, address, 'Account Verification', otpMailTemp)
 }
 
 export const sendProjectCreationEmail = async(address) => {
-    return await mailSend(sender=appEmail, receiver=address, subject='Project Created', html=projectCreationEmailTemp)
+    return await mailSend(appEmail, address, 'Project Created', projectCreationEmailTemp)
 }
 
 

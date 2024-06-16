@@ -23,10 +23,11 @@ export const VerifyUser = async(user) => {
     if(!user){
         throw new AppError('No User email found')
     }
-    sendOtp(user.email)
+    await sendOtp(user.email)
     user.otp = generateOTP()
     user.otpExpiry = new Date(Date.now() + 1000 * 60 * 30)
     await user.save()
+    return "An email has been sent to you containing OTP for your account verification"
 }
 
 export const verifyOTP = async(user, otp) => {
