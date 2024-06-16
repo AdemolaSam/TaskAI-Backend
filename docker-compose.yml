@@ -1,15 +1,7 @@
-version: '3'
 services:
   app:
     build: .
     ports:
       - "3000:3000"
-    depends_on:
-      - mysql
     environment:
-      - MYSQL_HOST=mysql
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=password
-      - MYSQL_DB=taskai_dev
-volumes:
-  mysql-data:
+      - NODE_ENV=production
