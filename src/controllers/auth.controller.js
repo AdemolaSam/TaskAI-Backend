@@ -33,7 +33,7 @@ export const login = async (req, res) => {
                 maxAge: 24 * 60 * 60 * 1000 //24 hours
             }
         )
-        userData.password = ''
+        
         return res.status(httpStatus.OK).json(userData)
     } catch (error) {
         if(error instanceof AppError){

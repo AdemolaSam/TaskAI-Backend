@@ -10,9 +10,9 @@ export const registerUser = async (createBody) => {
     if(userExists){
         throw new Error("This email is not available. Please try another email")
     }
-    const hash = bcrypt.hash(createBody.password, 10)
-    const { password, ...rest } = createBody
-    const userData = { rest, password: hash }
+    const hash = await bcrypt.hash(createBody.password, 10)
+    
+    const userData = { ...createBody, password:hash }
     const newUser = await User.create(userData)
     await sendWelcomeMail()
     return newUser
@@ -29,10 +29,9 @@ export const loginUser = async (loginBody)=> {
         throw new AppError("Invalid Credentials. Please try again with valid credentials")
     }
    const token = generateToken(user)
-   const { password, rest } = user
    return {
      token: token,
-     user: rest
+     user: user
    }
 }
 
