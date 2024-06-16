@@ -11,6 +11,7 @@ services:
       - MYSQL_USER=root
       - MYSQL_PASSWORD=password
       - MYSQL_DB=taskai_dev
+     command: ["./wait-for-it/wait-for-it.sh", "mysql:3306", "--", "npm", "start"]
   mysql:
     image: mysql:latest
     environment:

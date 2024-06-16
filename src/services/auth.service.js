@@ -30,7 +30,8 @@ export const VerifyUser = async(user) => {
     return "An email has been sent to you containing OTP for your account verification"
 }
 
-export const verifyOTP = async(user, otp) => {
+export const verifyOTP = async(email, otp) => {
+    const user = await getUserByEmail(email)
     if(user.otp !== otp){
         throw new AppError('Invalid OTP')
     }
