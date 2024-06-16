@@ -32,16 +32,16 @@ const mailSend = async (sender, receiver, subject, html, text) => {
 mailSend().catch(err => console.log(err.message))
 
 export const sendWelcomeMail = async(address) => {
-   return await mailSend(sender=appEmail, receiver, subject='Welcome To TaskAI', html=welcomeMailTemp)
+   return await mailSend(sender=appEmail, receiver=address, subject='Welcome To TaskAI', html=welcomeMailTemp)
 }
 
 
 export const sendOtp = async(address) => {
-    return await mailSend(sender=appEmail, receiver, subject='Account Verification', html=otpMailTemp)
+    return await mailSend(sender=appEmail, receiver=address, subject='Account Verification', html=otpMailTemp)
 }
 
 export const sendProjectCreationEmail = async(address) => {
-    return await mailSend(sender=appEmail, receiver, subject='Project Created', html=projectCreationEmailTemp)
+    return await mailSend(sender=appEmail, receiver=address, subject='Project Created', html=projectCreationEmailTemp)
 }
 
 
