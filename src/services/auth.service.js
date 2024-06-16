@@ -41,7 +41,7 @@ export const verifyOTP = async(email, otp) => {
     user.otp = null
     user.otpExpiry = null
     await user.save()
-    loginUser(user)
+    return "Account verification successful!"
 }
 
 export const loginUser = async (loginBody)=> {
