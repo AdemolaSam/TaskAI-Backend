@@ -19,11 +19,11 @@ const transporter = nodemailer.createTransport({
 
 const mailSend = async (sender, receiver, subject, html, text) => {
     const emailInfo = await transporter.sendMail({
-        from: '',
-        to: '',
-        subject: '',
-        html: '',
-        text: '',
+        from: sender,
+        to: receiver,
+        subject: subject,
+        html: html,
+        text: text,
     })
     
     console.log(`Message sent to: ${emailInfo.messageId}`)
