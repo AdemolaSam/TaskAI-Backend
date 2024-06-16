@@ -1,7 +1,11 @@
 import Task from "../models/Task.model";
+import { AppError } from "../middlewares/error";
 
 export const createTask = async(taskObj) => {
     const newTask = await Task.create(taskObj)
+    if(!newTask){
+        throw new AppError("Failed to create task. Please try again.")
+    }
     return newTask
 }
 
