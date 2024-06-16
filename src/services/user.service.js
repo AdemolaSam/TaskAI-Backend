@@ -1,6 +1,6 @@
 import { where } from "sequelize";
-import { AppError } from "../middlewares/error";
-import User from "../models/user.model";
+import { AppError } from "../middlewares/error.js";
+import User from "../models/user.model.js";
 
 export const getUserByEmail = (email) => {
     const user = User.findOne({

@@ -1,14 +1,14 @@
 import httpStatus from "http-status"
 import {
-    register,
-    login
+    registerUser,
+    loginUser
 } from "../services/auth.service.js"
 import { AppError } from "../middlewares/error.js"
 
 export const register = async (req, res) => {
     try {
         const createBody = req.body
-        const newUser = await register(createBody)   
+        const newUser = await registerUser(createBody)   
         return res.status(httpStatus.CREATED).json(newUser)
     } catch (error) {
         if(error instanceof AppError){
@@ -25,9 +25,7 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
     try {
-        const email = req.body.email
-        const password = req.body.password
-        const userData = await login(email, password)
+        const userData = await loginUser(req.body)
         res.cookie('accessToken',
             userData.token,
             {

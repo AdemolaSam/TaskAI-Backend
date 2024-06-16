@@ -1,11 +1,11 @@
-import User from "../models/user.model";
+import User from "../models/user.model.js";
 import bcrypt from "bcrypt"
-import { getUserByEmail } from "./user.service";
-import { AppError } from "../middlewares/error";
-import generateToken from "../utils/token";
-import { sendWelcomeMail, } from "./email.service";
+import { getUserByEmail } from "./user.service.js";
+import { AppError } from "../middlewares/error.js";
+import generateToken from "../utils/token.js";
+import { sendWelcomeMail, } from "./email.service.js";
 
-export const register = async (createBody) => {
+export const registerUser = async (createBody) => {
     const userExists = await getUserByEmail(createBody.email)
     if(userExists){
         throw new Error("This email is not available. Please try another email")
@@ -18,13 +18,13 @@ export const register = async (createBody) => {
     return newUser
 }
 
-export const login = async (email, password)=> {
-    const user = await getUserByEmail(email)
+export const loginUser = async (loginBody)=> {
+    const user = await getUserByEmail(loginBody.email)
     if(!user){
         console.log("User not found")
         throw new Error("Please sign up to continue.")
     }
-    const userVerified = bcrypt.compare(password, user.password)
+    const userVerified = bcrypt.compare(loginBody.password, user.password)
     if(!userVerified){
         throw new AppError("Invalid Credentials. Please try again with valid credentials")
     }
