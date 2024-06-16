@@ -3,7 +3,7 @@ import bcrypt from "bcrypt"
 import { getUserByEmail } from "./user.service.js";
 import { AppError } from "../middlewares/error.js";
 import generateToken from "../utils/token.js";
-import { sendWelcomeMail, } from "./email.service.js";
+import { sendOtp, sendWelcomeMail, } from "./email.service.js";
 
 export const registerUser = async (createBody) => {
     const userExists = await getUserByEmail(createBody.email)
@@ -14,8 +14,32 @@ export const registerUser = async (createBody) => {
     
     const userData = { ...createBody, password:hash }
     const newUser = await User.create(userData)
-    await sendWelcomeMail()
+    await sendWelcomeMail(newUser.email)
     return newUser
+}
+
+
+export const VerifyUser = async(user) => {
+    if(!user){
+        throw new AppError('No User email found')
+    }
+    sendOtp(user.email)
+    user.otp = generateOTP()
+    user.otpExpiry = new Date(Date.now() + 1000 * 60 * 30)
+    await user.save()
+}
+
+export const verifyOTP = async(user, otp) => {
+    if(user.otp !== otp){
+        throw new AppError('Invalid OTP')
+    }
+    if(user.otpExpiry < Date.now()) {
+        throw new AppError('OTP Expired')
+    }
+    user.otp = null
+    user.otpExpiry = null
+    await user.save()
+    loginUser(user)
 }
 
 export const loginUser = async (loginBody)=> {
@@ -24,7 +48,11 @@ export const loginUser = async (loginBody)=> {
         console.log("User not found")
         throw new Error("Please sign up to continue.")
     }
+
     const userVerified = bcrypt.compare(loginBody.password, user.password)
+    if(!user.isVerified){
+        VerifyUser(user)
+    }
     if(!userVerified){
         throw new AppError("Invalid Credentials. Please try again with valid credentials")
     }
@@ -33,8 +61,4 @@ export const loginUser = async (loginBody)=> {
      token: token,
      user: user
    }
-}
-
-export const VerifyUser = async(req, res) => {
-    
 }
