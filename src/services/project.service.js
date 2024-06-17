@@ -18,10 +18,10 @@ export const getProjectById = async(projectId) => {
     return project
 }
 
-export const getUserProjects = async (projectId) => {
+export const getUserProjects = async (userId) => {
     const projects = await Project.findAll({
         where: {
-            projectId: projectId
+            projectId: userId
         }
     })
 
