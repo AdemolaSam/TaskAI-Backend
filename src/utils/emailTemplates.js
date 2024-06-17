@@ -1,6 +1,6 @@
 export const welcomeMailTemp= (username) => {
     return `
-        <div style="margin: auto; width: 100%; background: grey; ">
+        <div style="margin: auto; width: 100%; background: white; color: black; ">
             <h1>Welcome aboard ${username}</h1>
             <p>Manage your projects efficiently with TaskMe</p>
             <p>Take advantage of the integrated AI in Taskme to breakdown and manage your tasks</p>

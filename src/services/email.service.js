@@ -31,17 +31,17 @@ const mailSend = async (sender, receiver, subject, html, text) => {
 
 mailSend().catch(err => console.log(err.message))
 
-export const sendWelcomeMail = async(address) => {
-   return await mailSend(appEmail, address, 'Welcome To TaskAI', welcomeMailTemp)
+export const sendWelcomeMail = async(address, username) => {
+   return await mailSend(appEmail, address, 'Welcome To TaskAI', welcomeMailTemp(username))
 }
 
 
-export const sendOtp = async(address) => {
-    return await mailSend(appEmail, address, 'Account Verification', otpMailTemp)
+export const sendOtp = async(address, otp) => {
+    return await mailSend(appEmail, address, 'Account Verification', otpMailTemp(otp))
 }
 
-export const sendProjectCreationEmail = async(address) => {
-    return await mailSend(appEmail, address, 'Project Created', projectCreationEmailTemp)
+export const sendProjectCreationEmail = async(address, projectName) => {
+    return await mailSend(appEmail, address, 'Project Created', projectCreationEmailTemp(projectName))
 }
 
 

@@ -2,7 +2,8 @@ import httpStatus from "http-status"
 import {
     registerUser,
     loginUser,
-    verifyOTP
+    verifyOTP,
+    sendUserOtp
 } from "../services/auth.service.js"
 import { AppError } from "../middlewares/error.js"
 
@@ -44,6 +45,25 @@ export const login = async (req, res) => {
         }
         return res.status(httpStatus.BAD_REQUEST).json({
             message: error.message
+        })
+    }
+}
+
+export const getOTP = async(req, res) => {
+    try {
+        const result = await sendUserOtp(req.body.email)   
+        return res.status(httpStatus.OK).json({
+            message: result
+        })
+    } catch (error) {
+        if(error instanceof AppError) {
+            return res.status(httpStatus.BAD_REQUEST).json({
+                message: error.message
+            })
+        }
+        return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
+            message: error.message,
+            error: "Internal Server Error"
         })
     }
 }

@@ -1,6 +1,6 @@
 # Use the official Node.js image.
 # https://hub.docker.com/_/node
-FROM node:14
+FROM node:latest
 
 # Create and change to the app directory.
 WORKDIR /TaskAI

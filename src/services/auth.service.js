@@ -14,17 +14,20 @@ export const registerUser = async (createBody) => {
     
     const userData = { ...createBody, password:hash }
     const newUser = await User.create(userData)
-    await sendWelcomeMail(newUser.email)
+    await sendWelcomeMail(newUser.email, newUser.firstName)
     return newUser
 }
 
 
-export const VerifyUser = async(user) => {
+export const sendUserOtp = async(email) => {
+    const user = await getUserByEmail(email)
     if(!user){
         throw new AppError('No User email found')
     }
-    await sendOtp(user.email)
-    user.otp = generateOTP()
+    const otpGenerated = generateOTP()
+    user.otp = otpGenerated
+    await sendOtp(email, otpGenerated)
+    
     user.otpExpiry = new Date(Date.now() + 1000 * 60 * 30)
     await user.save()
     return "An email has been sent to you containing OTP for your account verification"
@@ -53,7 +56,7 @@ export const loginUser = async (loginBody)=> {
 
     const userVerified = bcrypt.compare(loginBody.password, user.password)
     if(!user.isVerified){
-        VerifyUser(user)
+       throw new AppError("Please verify your account before you continue")
     }
     if(!userVerified){
         throw new AppError("Invalid Credentials. Please try again with valid credentials")
