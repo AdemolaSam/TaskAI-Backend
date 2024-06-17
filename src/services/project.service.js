@@ -30,3 +30,8 @@ export const getUserProjects = async (userId) => {
     }
     return projects
 }
+
+export const deleteProject = async(projectId) => {
+    const project = await getProjectById(projectId)
+    return await project.destroy()
+}
