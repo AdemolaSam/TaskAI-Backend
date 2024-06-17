@@ -17,7 +17,7 @@ router.post('/', register)
 router.post('/login', login)
 router.post('/logout', logout)
 router.get('/otp', getOTP)
-router.get('/verify', verifyUserOTP)
+router.put('/verify', verifyUserOTP)
 
 
 export default router
