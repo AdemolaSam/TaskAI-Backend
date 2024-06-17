@@ -9,6 +9,11 @@ dotenv.config()
 const port = process.env.PORT || 8030
 const app = express()
 
+sequelize
+  .sync()
+  .then(() => console.log('Database synced'))
+  .catch((error) => console.log(error));
+
 app.use(cors())
 app.use(morgan('dev'))
 app.use(express.json())
