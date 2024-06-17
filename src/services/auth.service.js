@@ -4,6 +4,7 @@ import { getUserByEmail } from "./user.service.js";
 import { AppError } from "../middlewares/error.js";
 import generateToken from "../utils/token.js";
 import { sendOtp, sendWelcomeMail, } from "./email.service.js";
+import generateOTP from "../utils/otp.js";
 
 export const registerUser = async (createBody) => {
     const userExists = await getUserByEmail(createBody.email)
@@ -43,6 +44,7 @@ export const verifyOTP = async(email, otp) => {
     }
     user.otp = null
     user.otpExpiry = null
+    user.isVerified = true
     await user.save()
     return "Account verification successful!"
 }

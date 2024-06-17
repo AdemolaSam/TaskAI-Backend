@@ -70,8 +70,9 @@ export const getOTP = async(req, res) => {
 
 export const verifyUserOTP = async(req, res) => {
     const email = req.body.email
+    const otp = req.body.otp
     try {
-        const result = await verifyOTP(email)
+        const result = await verifyOTP(email, otp)
         return result
     } catch (error) {
         if(error instanceof AppError) {
