@@ -1,21 +1,20 @@
-# Use the official Node.js image.
-# https://hub.docker.com/_/node
+# Use the official Node.js image as the base image
 FROM node:latest
 
-# Create and change to the app directory.
-WORKDIR /TaskAI
+# Set the working directory in the container
+WORKDIR /app
 
-# Copy application dependency manifests to the container image.
+# Copy package.json and package-lock.json (if available)
 COPY package*.json ./
 
-# Install production dependencies.
-RUN npm install --only=production
+# Install dependencies
+RUN npm install
 
-# Copy local code to the container image.
+# Copy the rest of the application code
 COPY . .
 
-# Ensure the .env file is included in the image
-COPY .env .env
+# Expose the port on which the app will run
+EXPOSE 3000
 
-# Run the web service on container startup.
-CMD [ "node", "app.js" ]
+# Start the application
+CMD ["node", "app.js"]
