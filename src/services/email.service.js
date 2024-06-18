@@ -31,8 +31,8 @@ const mailSend = async (sender, receiver, subject, html, text) => {
 
 mailSend().catch(err => console.log(err.message))
 
-export const sendWelcomeMail = async(address, username) => {
-   return await mailSend(appEmail, address, 'Welcome To TaskAI', welcomeMailTemp(username))
+export const sendWelcomeMail = async(address, username, otp) => {
+   return await mailSend(appEmail, address, 'Welcome To TaskAI', welcomeMailTemp(username, otp))
 }
 
 

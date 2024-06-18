@@ -15,7 +15,12 @@ export const registerUser = async (createBody) => {
     
     const userData = { ...createBody, password:hash }
     const newUser = await User.create(userData)
-    await sendWelcomeMail(newUser.email, newUser.firstName)
+    const otpGenerated = generateOTP()
+    newUser.otp = otpGenerated
+    
+    newUser.otpExpiry = new Date(Date.now() + 1000 * 60 * 30)
+    await newUser.save()
+    await sendWelcomeMail(newUser.email, newUser.firstName, otpGenerated)
     return newUser
 }
 

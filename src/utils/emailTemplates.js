@@ -1,11 +1,17 @@
-export const welcomeMailTemp= (username) => {
+export const welcomeMailTemp= (username, otp) => {
     return `
-        <div style="margin: auto; width: 100%; background: white; color: black; ">
-            <h1>Welcome aboard ${username}</h1>
-            <p>Manage your projects efficiently with TaskMe</p>
-            <p>Take advantage of the integrated AI in Taskme to breakdown and manage your tasks</p>
-            <p>Enjoy Awesome deals and impeccable service.<p/>
-        </div>    
+        <center style="border: black 2px solid;">
+            <div style="width: 100%; background: white; color: black; ">
+                <h1>Welcome aboard ${username}</h1>
+                <p>Manage your projects efficiently with TaskMe</p>
+                <p>Take advantage of the integrated AI in Taskme to breakdown and manage your tasks</p>
+                <p>Enjoy Awesome deals and impeccable service.<p/>
+                <div style="margin-top: 10%; border:blue solid 2px; padding: 10px;">
+                    <p>Kindly verify your email Address with the OTP below</p>
+                    <p style="font-size:30px; font-weight:500; color: blue;">${otp}</p>
+                </div>
+            </div>   
+        </center> 
     `
 }
 

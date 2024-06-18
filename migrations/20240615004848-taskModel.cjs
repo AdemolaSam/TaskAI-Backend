@@ -10,6 +10,19 @@ module.exports = {
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true
       },
+
+      taskName: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+
+    startDate: {
+        type: Sequelize.DATE
+    },
+
+    dueDate: {
+        type: Sequelize.DATE,
+    },
       projectId: {
         type: Sequelize.UUID,
         references: {

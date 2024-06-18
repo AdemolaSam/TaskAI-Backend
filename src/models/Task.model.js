@@ -8,6 +8,19 @@ const Task = sequelize.define('Task', {
         allowNull: false
     },
 
+    taskName: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+
+    startDate: {
+        type: DataTypes.DATE
+    },
+
+    dueDate: {
+        type: DataTypes.DATE,
+    },
+
     projectId: {
         type: DataTypes.UUID,
         references: {
