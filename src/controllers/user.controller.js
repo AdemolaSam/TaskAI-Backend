@@ -7,7 +7,7 @@ import {
 } from "../services/user.service.js"
 import { AppError } from "../middlewares/error.js"
 
-export const getUserById = async(req, res) => {
+export const getUser = async(req, res) => {
     try {
         const user = await getUserById(req.params.userId)  
         return res.status(httpStatus.OK).json(user)
@@ -24,7 +24,7 @@ export const getUserById = async(req, res) => {
     }
 }
 
-export const updateUser = async(req, res) => {
+export const updateUserProfile = async(req, res) => {
     try {
         const updatedUser = await updateUser(
             req.params.userId,
@@ -64,7 +64,7 @@ export const updateUserPassword = async(req, res) => {
 
 }
 
-export const getUserByEmail = async(req, res) => {
+export const fetchUserByEmail = async(req, res) => {
     try {
         const user = await getUserByEmail(req.body.email)
         return res.status(httpStatus.OK).json(user)
@@ -81,7 +81,7 @@ export const getUserByEmail = async(req, res) => {
     }
 }
 
-export const countAllUsers = async(req, res) => {
+export const fetchcountAllUsers = async(req, res) => {
     try {
         const usersCount = await countAllUsers()
         return res.status(httpStatus.OK).json(usersCount)

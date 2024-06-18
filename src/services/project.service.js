@@ -1,6 +1,6 @@
 import Project from "../models/project.model.js"
 
-import { AppError } from "../middlewares/error";
+import { AppError } from "../middlewares/error.js";
 
 export const createProject = async(projectObj) => {
     const newProject= await Project.create(projectObj)

@@ -1,5 +1,5 @@
-import Task from "../models/Task.model";
-import { AppError } from "../middlewares/error";
+import Task from "../models/Task.model.js";
+import { AppError } from "../middlewares/error.js";
 
 export const createTask = async(taskObj) => {
     const newTask = await Task.create(taskObj)
