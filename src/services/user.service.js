@@ -36,6 +36,13 @@ export const updateUser = async (userId, updateBody) => {
     return updatedUser
 }
  
+export const updatePassword = async (email, newPassword) => {
+    const user = await getUserByEmail(email)
+    user.password = newPassword
+    await user.save()
+    return "You have successfully updated your password."
+}
+
 export const countAllUsers = async () => {
     const usersCount = await User.findAndCountAll()
     return {

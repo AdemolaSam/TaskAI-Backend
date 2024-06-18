@@ -9,6 +9,14 @@ export const createTask = async(taskObj) => {
     return newTask
 }
 
+export const createMultipleTasks = async(multipleTaskObj) => {
+    const tasks = await Task.bulkCreate(multipleTaskObj)
+    if(!tasks){
+        throw new AppError("Failed to create multiple tasks. Please try again")
+    }
+    return tasks
+}
+
 export const getTaskById = async(taskId) => {
     const task = await Task.findByPk(taskId)
     if(!task){

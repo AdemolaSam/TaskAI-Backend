@@ -1,5 +1,5 @@
 import httpstatus from "http-status"
-import { createTask, deleteTask, getTaskById, getTasksByProject } from "../services/task.service.js"
+import { createMultipleTasks, createTask, deleteTask, getTaskById, getTasksByProject } from "../services/task.service.js"
 import { AppError } from "../middlewares/error.js"
 
 export const createNewTask = async(req, res) => {
@@ -35,6 +35,24 @@ export const getTask = async(req, res) => {
         })
     }
     
+}
+
+export const createMultiple = async(req, res) => {
+    try {
+        const tasks = await createMultipleTasks(req.body)
+        return res.status(httpstatus.CREATED).json(tasks)
+    } catch (error) {
+        if(error instanceof AppError){
+            return res.status(httpstatus.BAD_REQUEST).json({
+                message: error.message
+            })
+        }
+
+        return res.status(httpstatus.INTERNAL_SERVER_ERROR).json({
+            message: error.message,
+            error: "Internal Server Error"
+        })
+    }
 }
 
 export const getAllTasksByProject = async(req, res) => {
