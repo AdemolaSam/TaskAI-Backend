@@ -1,10 +1,11 @@
 import { DATE, DataTypes, Sequelize } from "sequelize";
-import sequelize from "../config/db";
+import sequelize from "../config/db.js";
 
 const Project = sequelize.define('Project', {
     id: {
         type: DataTypes.UUID,
         defaultValue: Sequelize.UUIDV4,
+        primaryKey: true,
         allowNull: false
     },
 

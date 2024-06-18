@@ -10,8 +10,8 @@ const router = Router()
 router.use('/auth', authRoute)
 router.use('/user', userRoute)
 router.use('/project',projectRoute)
-router.use('./task', taskRoute)
-router.use('./ai', aiRoute)
+router.use('/task', taskRoute)
+router.use('/ai', aiRoute)
 
 
 export default router

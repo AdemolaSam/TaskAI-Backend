@@ -1,4 +1,4 @@
-import Task from "../models/Task.model.js";
+import Task from "../models/task.model.js";
 import { AppError } from "../middlewares/error.js";
 
 export const createTask = async(taskObj) => {
