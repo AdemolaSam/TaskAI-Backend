@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 router.post('/', register)
 router.post('/login', login)
 router.post('/logout', logout)
-router.get('/otp', getOTP)
+router.put('/otp', getOTP)
 router.put('/verify', verifyUserOTP)
 
 

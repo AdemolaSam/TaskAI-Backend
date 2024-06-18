@@ -73,7 +73,7 @@ export const verifyUserOTP = async(req, res) => {
     const otp = req.body.otp
     try {
         const result = await verifyOTP(email, otp)
-        return result
+        return res.status(httpStatus.OK).json(result)
     } catch (error) {
         if(error instanceof AppError) {
             return res.status(httpStatus.BAD_REQUEST).json({
