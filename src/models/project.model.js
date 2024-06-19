@@ -29,6 +29,11 @@ const Project = sequelize.define('Project', {
         allowNull: false
     },
 
+    description: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+
     dueTime: {
         type: DataTypes.TIME,
         allowNull: false
