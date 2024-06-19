@@ -13,7 +13,7 @@ export const createProject = async(projectObj) => {
 export const getProjectById = async(projectId) => {
     const project = await Project.findByPk(projectId)
     if(!project){
-        throw new AppError("Project creation failed. Please try again.")
+        throw new AppError("The requested project could not be found. Please try again.")
     }
     return project
 }
@@ -21,7 +21,7 @@ export const getProjectById = async(projectId) => {
 export const getUserProjects = async (userId) => {
     const projects = await Project.findAll({
         where: {
-            projectId: userId
+            creator: userId
         }
     })
 

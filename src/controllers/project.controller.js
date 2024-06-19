@@ -4,7 +4,9 @@ import { AppError } from "../middlewares/error.js"
 
 export const createNewProject = async(req, res) => {
     try {
-        const newProject = await createProject(req.body)
+        const userId = req.user.userId
+        const projectObj = {...req.body, creator: userId}
+        const newProject = await createProject(projectObj)
         return newProject
     } catch (error) {
         if(error instanceof AppError){
@@ -39,7 +41,7 @@ export const fetchProjectById = async(req, res) => {
 
 export const getAllUserProjects = async(req, res) => {
     try {
-        const projects = await getUserProjects(req.user)
+        const projects = await getUserProjects(req.user.userId)
         return res.status(httpStatus.OK).json(projects)
     } catch (error) {
         if(error instanceof AppError){

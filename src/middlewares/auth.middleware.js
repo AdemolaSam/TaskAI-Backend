@@ -1,5 +1,7 @@
-import jwt, { JsonWebTokenError, TokenExpiredError } from "jsonwebtoken"
+import jwt from "jsonwebtoken"
 import httpStatus from "http-status"
+
+const { JsonWebTokenError, TokenExpiredError } = jwt
 
 const decodeToken = (req, res, next) => {
     const token = req.headers.authorization
