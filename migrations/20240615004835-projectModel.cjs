@@ -43,6 +43,11 @@ module.exports = {
         },
         allowNull: false
       },
+
+      description: {
+        type: Sequelize.TEXT,
+        allowNull: false
+      },
       numberOfTasks: {
         type: Sequelize.INTEGER
       },

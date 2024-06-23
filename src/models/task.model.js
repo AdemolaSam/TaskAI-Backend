@@ -1,5 +1,6 @@
 import { Sequelize, DataTypes } from "sequelize";
 import sequelize from "../config/db.js";
+import Project from "./project.model.js";
 
 const Task = sequelize.define('Task', {
     id: {
@@ -46,5 +47,8 @@ const Task = sequelize.define('Task', {
         paranoid: true
     }
 )
+
+Task.belongsTo(Project, { foreignKey: 'projectId' })
+Project.hasMany(Task, { foreignKey: 'projectId' })
 
 export default Task

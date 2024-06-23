@@ -1,13 +1,18 @@
 import httpStatus from "http-status"
 import { createProject, deleteProject, getProjectById, getUserProjects } from "../services/project.service.js"
 import { AppError } from "../middlewares/error.js"
+import { generateTasks } from "../services/ai.service.js"
 
 export const createNewProject = async(req, res) => {
     try {
         const userId = req.user.userId
         const projectObj = {...req.body, creator: userId}
         const newProject = await createProject(projectObj)
-        return newProject
+        const taskBreakdown = await generateTasks(newProject.name, newProject.startDate, newProject.endDate, newProject.dueTime, newProject.description)
+        return res.status(httpStatus.CREATED).json({
+            newProject,
+            taskBreakdown: taskBreakdown
+        })
     } catch (error) {
         if(error instanceof AppError){
             return res.status(httpStatus.BAD_REQUEST).json({

@@ -70,15 +70,15 @@ export const testAIML = async () => {
 
 
 
-export const generateTasks = async (project, startDate, endDate) => {
+export const generateTasks = async (project, startDate, endDate, dueTime, description) => {
     const chatCompletion = await openai.chat.completions.create({
         model: "mistralai/Mistral-7B-Instruct-v0.2",
         messages: [
           {
             role: "system",
-            content: "You are a project manager. You want to itemize and describe tasks that need to be done in a project. You will be given a start date and a due date. Make sure the tasks are listed in order and also give timeline for completion"
+            content: "You are a project manager. You want to itemize and describe tasks that need to be done in a project. You will be given a project name/title, start date,due date, due time, and project description. Make sure the tasks are listed in order and also give timeline for completion. The tasks should be returned in a json object"
         },
-          { role: "user", content: `Break down this project: ${project}. it will start on: ${startDate}, and end on: ${endDate}` }
+          { role: "user", content: `Break down this project. Project name: ${project}. it will start on: ${startDate}, and end on: ${endDate} by ${dueTime}. Here is the project description: ${description}` }
         ],
         temperature: 0.7,
         max_tokens: 128,

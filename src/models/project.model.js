@@ -1,5 +1,6 @@
 import { DATE, DataTypes, Sequelize } from "sequelize";
 import sequelize from "../config/db.js";
+import User from "./user.model.js";
 
 const Project = sequelize.define('Project', {
     id: {
@@ -29,10 +30,10 @@ const Project = sequelize.define('Project', {
         allowNull: false
     },
 
-    // description: {
-    //     type: DataTypes.STRING,
-    //     allowNull: false
-    // },
+    description: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
 
     dueTime: {
         type: DataTypes.TIME,
@@ -68,5 +69,8 @@ const Project = sequelize.define('Project', {
     paranoid: true
  }
 )
+
+Project.belongsTo(User, { foreignKey: 'creator' })
+User.hasMany(Project, { foreignKey: 'creator' })
 
 export default Project
